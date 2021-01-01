@@ -7,7 +7,7 @@ from xbmc import Keyboard
 from xbmcgui import Dialog, ListItem
 
 import json
-import urlparse
+from urllib.parse import urlparse
 import requests
 import os
 import re
@@ -92,7 +92,7 @@ def parsePage(text):
     document = BeautifulSoup(text, 'html.parser').find('div', class_="content-list z-depth-1")
     for a in document.find_all('a'):
         if a.has_attr('title'):
-            path = urlparse.urlparse(a['href']).path
+            path = urlparse(a['href']).path
             title = a['title']
             item = ListItem(title)
             imgTag = a.find('img')
